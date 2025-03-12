@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        .student-info {
+            margin-top: 20px;
+        }
+        .student-info p {
+            font-size: 16px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Search Student Information</h1>
+        <input type="text" id="hallTicketNumber" placeholder="Enter Hall Ticket Number">
+        <button onclick="searchStudent()">Search</button>
+
+        <div class="student-info" id="studentInfo">
+            <!-- Student info will appear here -->
+        </div>
+    </div>
+
+    <script>
+        const students = [
+            {
+                id: '001',
+                name: 'suchithra',
+                age: 20,
+                gender: 'FeMale',
+                major: 'Computer Science',
+                gpa: 3.8
+            },
+            {
+                id: '002',
+                name: 'sravani',
+                age: 22,
+                gender: 'Female',
+                major: 'Biology',
+                gpa: 3.9
+            },
+            {
+                id: '003',
+                name: 'sneha',
+                age: 21,
+                gender: 'Female',
+                major: 'Physics',
+                gpa: 3.7
+            },
+            {
+                id: '004',
+                name: 'ganitha',
+                age: 24,
+                gender: 'Female',
+                major: 'maths',
+                gpa: 3.9  
+
+            }
+        ];
+
+        function searchStudent() {
+            const hallTicketNumber = document.getElementById('hallTicketNumber').value;
+            const studentInfoDiv = document.getElementById('studentInfo');
+            studentInfoDiv.innerHTML = ''; // Clear previous results
+
+            const student = students.find(s => s.id === hallTicketNumber);
+            if (student) {
+                studentInfoDiv.innerHTML = `
+                    <h3>Student Details</h3>
+                    <p><strong>ID:</strong> ${student.id}</p>
+                    <p><strong>Name:</strong> ${student.name}</p>
+                    <p><strong>Age:</strong> ${student.age}</p>
+                    <p><strong>Gender:</strong> ${student.gender}</p>
+                    <p><strong>Major:</strong> ${student.major}</p>
+                    <p><strong>GPA:</strong> ${student.gpa}</p>
+                `;
+            } else {
+                studentInfoDiv.innerHTML = '<p class="error">Student not found. Please check the Hall Ticket Number.</p>';
+            }
+        }
+    </script>
+
+</body>
+</html>
